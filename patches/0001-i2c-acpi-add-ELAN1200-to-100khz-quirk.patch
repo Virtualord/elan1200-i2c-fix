@@ -1,0 +1,40 @@
+From 5ee2c2d14470b6579b436ab730c70f9c9cd79640 Mon Sep 17 00:00:00 2001
+From: Rayuga <adityapatkar81@gmail.com>
+Date: Thu, 22 Oct 2026 23:20:42 +0530
+Subject: [PATCH] i2c: acpi: Add ELAN1200 to i2c_acpi_force_100khz_device_ids
+
+The ELAN1200 touchpad (HID 04F3:3104) on the ASUS VivoBook X571GD
+becomes sluggish and occasionally jumps when the I2C bus runs at
+400 kHz. The problem only appears with the AC charger connected.
+
+The laptop DSDT describes the touchpad bus at 0x00061A80 (400 kHz).
+Forcing the bus to 100 kHz removes the problem. The same workaround is
+already applied to the ELAN06FA, ELAN0678, and ELAN1300 touchpads.
+
+The DSDT override that forces 100 kHz was verified on an ASUS VivoBook
+X571GD (BIOS X571GD.313) running a 6.18.y kernel. This patch provides
+the equivalent kernel-level fix for unmodified firmware.
+
+Link: https://github.com/torvalds/linux/commit/bfd74cd1fbc026f04446e67d6915c7e199c2bffd
+Link: https://github.com/torvalds/linux/commit/9998e388be9930c106eb5904c23ecf2162407527
+Link: https://github.com/torvalds/linux/commit/9e9762e578db7556bea644bb5a8a2435f63544d1
+Signed-off-by: Rayuga <adityapatkar81@gmail.com>
+---
+ drivers/i2c/i2c-core-acpi.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/i2c/i2c-core-acpi.c b/drivers/i2c/i2c-core-acpi.c
+index 8f3bdd5..9fca13c 100644
+--- a/drivers/i2c/i2c-core-acpi.c
++++ b/drivers/i2c/i2c-core-acpi.c
+@@ -374,6 +374,7 @@ static const struct acpi_device_id i2c_acpi_force_100khz_device_ids[] = {
+ 	{ "DLL0945", 0 },
+ 	{ "ELAN0678", 0 },
+ 	{ "ELAN06FA", 0 },
++	{ "ELAN1200", 0 },
+ 	{ "ELAN1300", 0 },
+ 	{}
+ };
+-- 
+2.55.0
+
