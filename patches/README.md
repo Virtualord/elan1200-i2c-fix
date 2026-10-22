@@ -25,9 +25,9 @@ The patch was generated against current `torvalds/linux` master. Line numbers
 and surrounding context can drift as the file changes; use `git am` or rebase
 the patch if it no longer applies cleanly.
 
-Older stable kernels have a shorter list. For example, 6.18.y contains only
-`DLL0945` and `ELAN06FA`, so this patch needs a rebase before applying it
-there. The DSDT override works independently of the kernel version.
+Older stable kernels may have a shorter list, so this patch may need a
+rebase before applying it there. The DSDT override works independently of
+the kernel version.
 
 ## Apply and build
 

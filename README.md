@@ -247,8 +247,8 @@ static const struct acpi_device_id i2c_acpi_force_100khz_device_ids[] = {
 
 The patch is in
 [`patches/0001-i2c-acpi-add-ELAN1200-to-100khz-quirk.patch`](patches/0001-i2c-acpi-add-ELAN1200-to-100khz-quirk.patch).
-It targets current `torvalds/linux` master. Kernel 6.18.y has a shorter list,
-so the patch must be rebased before applying it to older stable trees.
+It targets current `torvalds/linux` master. Older stable kernels may have a
+shorter list, so rebase the patch before applying it there.
 
 See [`patches/README.md`](patches/README.md) for apply and submission
 instructions. The kernel patch is a proposal and has not been merged upstream.
