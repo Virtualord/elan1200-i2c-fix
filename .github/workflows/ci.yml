@@ -23,7 +23,7 @@ jobs:
       - name: Install shellcheck
         run: |
           sudo apt-get update
-          sudo apt-get install -y shellcheck
+          sudo apt-get install -y shellcheck cpio
 
       - name: Run checks
         run: make check
