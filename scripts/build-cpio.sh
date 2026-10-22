@@ -59,6 +59,10 @@ INPUT=$1
     echo "error: input not found: $INPUT" >&2
     exit 1
 }
+if [ "$INPUT" = "$OUTPUT" ]; then
+    echo "error: input and output must differ" >&2
+    exit 1
+fi
 command -v cpio >/dev/null 2>&1 || {
     echo "error: cpio not found" >&2
     exit 1

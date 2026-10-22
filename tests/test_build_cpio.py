@@ -73,6 +73,16 @@ class BuildCpioTests(unittest.TestCase):
             )
             self.assertEqual(third.returncode, 0, third.stderr)
 
+            collision = subprocess.run(
+                ["sh", str(BUILD_SCRIPT), "-f", "-o", str(aml), str(aml)],
+                check=False,
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(collision.returncode, 1)
+            self.assertIn("must differ", collision.stderr)
+            self.assertEqual(aml.read_bytes(), make_dsdt())
+
             extract = work / "extract"
             extract.mkdir()
             with archive.open("rb") as handle:
