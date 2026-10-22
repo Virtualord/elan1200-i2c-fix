@@ -1,0 +1,15 @@
+# Example GRUB entry for the ELAN1200 100 kHz DSDT override.
+#
+# Install this file as /boot/grub/custom.cfg and replace the placeholders.
+# The override cpio MUST be listed before the normal initramfs.
+#
+# Most distributions source custom.cfg from /etc/grub.d/41_custom. If yours
+# does not, add this menuentry to /etc/grub.d/40_custom and regenerate
+# grub.cfg instead.
+#
+# Keep your normal boot entry. It is the rollback path.
+
+menuentry "Linux (ELAN1200 100 kHz DSDT fix)" {
+    linux /boot/vmlinuz-<KERNEL-VERSION> root=UUID=<YOUR-ROOT-UUID> ro <YOUR-KERNEL-OPTIONS>
+    initrd /boot/acpi-fix.cpio /boot/initramfs-<KERNEL-VERSION>.img
+}
