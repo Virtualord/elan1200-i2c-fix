@@ -217,15 +217,16 @@ watch for the `Touch jump detected and discarded` message.
 
 The upstream kernel already contains this quirk for other ELAN touchpads:
 
-- `ELAN06FA` — ASUS ExpertBook B9400CEA
-- `ELAN0678` — ASUS Zenbook UX3402VA
+- `ELAN06FA` — first ELAN quirk; the commit message cites a Lenovo V15 G4
+- `ELAN0678` — Lenovo ThinkPad X13
 - `ELAN1300` — ASUS VivoBook X513UA
 
-The upstream commit messages describe the same symptoms: sluggish movement and
-touch jumps that only appear when the laptop is plugged into AC power. The
-exact root cause is not fully understood, but the 100 kHz workaround is
-effective. The ELAN1200 on the X571GD is a different ACPI ID from the models
-already covered, so it needs its own entry.
+The upstream commit messages describe the same class of failure: excessive
+smoothing, sluggish movement, or touch jumps when the bus runs at 400 kHz.
+The ELAN0678 report specifically notes the problem when plugged into AC
+power. The exact root cause is not fully understood, but the 100 kHz
+workaround is effective. The ELAN1200 on the X571GD is a different ACPI ID
+from the models already covered, so it needs its own entry.
 
 See [`docs/diagnosis.md`](docs/diagnosis.md) for the full evidence trail.
 
