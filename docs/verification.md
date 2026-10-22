@@ -51,18 +51,19 @@ The active DSDT size is the decisive check: the original vendor table is
 264082 bytes and the patched table is 263792 bytes, so a size of 263792 means
 the kernel accepted and installed the override.
 
-## Expected kernel log
+## Verified kernel log
 
-The exact formatting and compiler version depend on the kernel and the `iasl`
-build. A successful override produces lines similar to:
+The verified boot produced these lines. Timestamps vary by boot:
 
 ```text
-ACPI: Table Upgrade: install [DSDT-_ASUS_-Notebook]
-ACPI: DSDT 00000000, 040670 (v02 _ASUS_ Notebook 0107200A INTL 20260408)
+[    0.017497] ACPI: DSDT ACPI table found in initrd [kernel/firmware/acpi/DSDT.aml][0x40670]
+[    0.017618] ACPI: Table Upgrade: override [DSDT-_ASUS_-Notebook]
 ```
 
-The `0107200A` OEM revision is the important part. The original table uses
-`01072009`.
+The important parts are the `ACPI table found in initrd` line, the
+`kernel/firmware/acpi/DSDT.aml` path, and the `Table Upgrade: override` line.
+The `0x40670` value is the table size in hex, 263792 bytes. The patched OEM
+revision is `0107200A`; the original table uses `01072009`.
 
 To check your own boot:
 

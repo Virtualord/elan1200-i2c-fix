@@ -20,5 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   list.
 - Documentation for diagnosis, other distributions, verification, and
   troubleshooting.
+- A hardware-report issue template, README status badges, and a 1280x640
+  social preview image.
 
 [1.0.0]: https://github.com/Virtualord/elan1200-i2c-fix/releases/tag/v1.0.0

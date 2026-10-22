@@ -8,6 +8,10 @@ to 100 kHz instead of 400 kHz. The repository also contains an upstream
 kernel quirk patch that adds the ELAN1200 to the kernel's existing 100 kHz
 device list.
 
+[![CI](https://github.com/Virtualord/elan1200-i2c-fix/actions/workflows/ci.yml/badge.svg)](https://github.com/Virtualord/elan1200-i2c-fix/actions/workflows/ci.yml)
+[![License: GPL-2.0-only](https://img.shields.io/badge/license-GPL--2.0--only-blue)](LICENSE)
+![Verified on X571GD](https://img.shields.io/badge/verified-X571GD-brightgreen)
+
 > **Status: verified.** On 2026-10-22 the patched DSDT was loaded through an
 > initrd ACPI override on kernel `6.18.58_1`. The active DSDT is 263792 bytes
 > and the touchpad no longer lags or jumps with the charger connected.
@@ -197,18 +201,19 @@ Select the new entry, then run:
 sudo dmesg | grep -iE 'ACPI table found in initrd|Table Upgrade'
 ```
 
-Expected observations:
+Expected observations from the verified boot:
 
 ```text
 kernel: 6.18.58_1
 active DSDT: 263792 bytes (expected 263792)
-ACPI: Table Upgrade: install [DSDT-_ASUS_-Notebook]
-ACPI: DSDT 00000000, 040670 (v02 _ASUS_ Notebook 0107200A INTL 20260408)
+[    0.017497] ACPI: DSDT ACPI table found in initrd [kernel/firmware/acpi/DSDT.aml][0x40670]
+[    0.017618] ACPI: Table Upgrade: override [DSDT-_ASUS_-Notebook]
 ```
 
-The exact log formatting and compiler version depend on the kernel and the
-`iasl` build. The important parts are the `Table Upgrade` line and the
-`0107200A` OEM revision.
+The timestamps and exact formatting vary by kernel. The important parts are
+the `ACPI table found in initrd` line, the `kernel/firmware/acpi/DSDT.aml`
+path, and the `Table Upgrade: override` line. The patched OEM revision is
+`0107200A`.
 
 Finally, use the touchpad for several minutes with the charger connected and
 watch for the `Touch jump detected and discarded` message.
