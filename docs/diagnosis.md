@@ -93,9 +93,9 @@ the ELAN06FA states that the root cause is not fully known, but that the
 100 kHz workaround is effective. The ELAN0678 and ELAN1300 commits describe
 the same symptoms and use the same workaround.
 
-This is not a charger defect and does not require a grounded charger, a
-different power supply, or a hardware modification. The fix is to give the
-touchpad more timing margin by lowering the bus speed.
+The verified fix does not require a grounded charger, a different power
+supply, or a hardware modification. It gives the touchpad more timing margin
+by lowering the bus speed.
 
 ## Why userspace settings do not help
 
@@ -164,11 +164,11 @@ the verified fix.
 
 ## Why not change the charger or grounding
 
-The charger correlation is a symptom, not the root cause. The touchpad bus is
-already marginal at 400 kHz, and the charger changes the electrical environment
-enough to expose it. Grounding or replacing the charger may change the symptom
-on one machine, but it does not address the bus timing and is not a reliable
-fix.
+The charger correlation is a trigger, not something the verified fix depends
+on. The evidence points to the bus being marginal at 400 kHz, and the charger
+changes the electrical environment enough to expose it. Grounding or replacing
+the charger may change the symptom on one machine, but it does not address the
+bus timing and is not a reliable fix.
 
 The verified solution is kernel/firmware-level and works while charging without
 touching the charger or the hardware.
