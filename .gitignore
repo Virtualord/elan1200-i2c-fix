@@ -1,0 +1,23 @@
+# Build outputs and extracted firmware
+*.aml
+*.cpio
+*.dat
+*.dsl
+build/
+out/
+work/
+
+# Logs and dumps that can contain machine-specific data
+*.log
+acpidump.txt
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Editors and operating systems
+.DS_Store
+.idea/
+.vscode/
